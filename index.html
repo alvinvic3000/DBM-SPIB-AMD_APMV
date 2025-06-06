@@ -477,7 +477,7 @@
             else if(name==='q5_route_prefer'){const oi=document.querySelector('input[name="q5_route_prefer_other"]'); if(oi)oi.style.display=(val==='Other')?'inline-block':'none'; if(val!=='Other')questionnaireData['q5_route_prefer_other']='';}
             // Clear validation styles on change
             const group = el.closest('.question-group'); if (group) group.classList.remove('invalid');
-            if (el.type === 'text') el.classList.remove('invalid');
+            if (el.type === 'text' || el.tagName === 'TEXTAREA') el.classList.remove('invalid');
          }
          clearOutput();
     }
@@ -573,7 +573,7 @@
     // --- Questionnaire Event Handling ---
     // (Keep setupQuestionnaireListeners and handleQuestionnaireChange unchanged)
     function setupQuestionnaireListeners() { const f=document.getElementById('questionnaire-form'); if(f){f.addEventListener('change',handleQuestionnaireChange); f.addEventListener('input',handleQuestionnaireChange);} }
-    function handleQuestionnaireChange(event) { const el=event.target; const name=el.name; const val=(el.type==='checkbox')?el.checked:(el.type==='radio'&&!el.checked)?questionnaireData[name]:el.value; if(questionnaireData.hasOwnProperty(name)){questionnaireData[name]=val; console.log(`Q Updated: ${name}=${val}`); const group=el.closest('.question-group'); if(group)group.classList.remove('invalid'); if(el.type==='text'||el.type==='textarea')el.classList.remove('invalid'); if(name==='q4_admin_count'){const oi=document.querySelector('input[name="q4_admin_count_other"]'); if(oi)oi.style.display=(val==='Other')?'inline-block':'none'; if(val!=='Other')questionnaireData['q4_admin_count_other']='';} else if(name==='q5_route_prefer'){const oi=document.querySelector('input[name="q5_route_prefer_other"]'); if(oi)oi.style.display=(val==='Other')?'inline-block':'none'; if(val!=='Other')questionnaireData['q5_route_prefer_other']='';}} clearOutput(); }
+    function handleQuestionnaireChange(event) { const el=event.target; const name=el.name; const val=(el.type==='checkbox')?el.checked:(el.type==='radio'&&!el.checked)?questionnaireData[name]:el.value; if(questionnaireData.hasOwnProperty(name)){questionnaireData[name]=val; console.log(`Q Updated: ${name}=${val}`); const group=el.closest('.question-group'); if(group)group.classList.remove('invalid'); if(el.type==='text'||el.tagName==='TEXTAREA')el.classList.remove('invalid'); if(name==='q4_admin_count'){const oi=document.querySelector('input[name="q4_admin_count_other"]'); if(oi)oi.style.display=(val==='Other')?'inline-block':'none'; if(val!=='Other')questionnaireData['q4_admin_count_other']='';} else if(name==='q5_route_prefer'){const oi=document.querySelector('input[name="q5_route_prefer_other"]'); if(oi)oi.style.display=(val==='Other')?'inline-block':'none'; if(val!=='Other')questionnaireData['q5_route_prefer_other']='';}} clearOutput(); }
 
     // --- Save/Load JSON (REMOVED) ---
 
